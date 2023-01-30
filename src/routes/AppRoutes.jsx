@@ -8,7 +8,7 @@ const AppRoutes = () => {
     <BrowserRouter>
       <MenuNavigation />
       <Header />
-      <div className="ml-0 md:ml-20 p-6">
+      <div className="ml-0 md:ml-20">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<Navigate to="/" />} />
