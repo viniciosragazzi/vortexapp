@@ -10,7 +10,7 @@ body {
   color: #5078ff;
 }
 .contentMobile {
-  z-index: 10 !important;
+  z-index: 100 !important;
 }
 .slider {
 }
