@@ -9,7 +9,7 @@ body {
 .active {
   color: #5078ff;
 }
-.containerMobile {
+.contentMobile {
   z-index: 10 !important;
 }
 .slider {
@@ -24,30 +24,21 @@ body {
   width: 100%;
   height: 100%;
 }
-.swiper-slide .container {
+.swiper-slide .content {
   background-size: cover;
-  background: none;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  /* box-shadow: inset 0px 2px 16px 10px #0c1117; */
+  border-radius: 20px;
 }
-.swiper-slide .container .img {
-  background: url("https://images4.alphacoders.com/100/1009981.jpg");
-  background-size: cover;
-  box-shadow: inset 0px 2px 20px 32px #0c1117;
-}
-.container .filter {
-  display: none;
+
+.content .filter {
+  display: flex;
 }
 
 @media (max-width: 1250px) {
-  .swiper-slide .container .img {
+  .swiper-slide .content .img {
     display: none;
-  }
-  .swiper-slide .container {
-    background: url("https://images4.alphacoders.com/100/1009981.jpg");
-    background-size: cover;
-    display: flex;
-    align-items: center;
-  }
-  .container .filter {
-    display: flex;
   }
 }
