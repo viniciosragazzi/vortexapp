@@ -1,3 +1,4 @@
+
 import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Header } from "../components/Header";
@@ -10,8 +11,12 @@ const AppRoutes = () => {
       <Header />
       <div className="ml-0 md:ml-20">
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="/fun" element={<Home />} />
+          <Route path={`/fun/${"movies"}`} element={<Home />} />
+          <Route path={`/fun/${"series"}`} element={<Home />} />
+          <Route path={`/fun/${"top"}`} element={<Home />} />
+          <Route path={`/fun/${"premieres"}`} element={<Home />} />
+          <Route path="*" element={<Navigate to="/fun" />} />
         </Routes>
       </div>
     </BrowserRouter>

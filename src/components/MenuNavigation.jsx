@@ -12,7 +12,7 @@ export function MenuNavigation(props) {
         <img className="w-full max-w-[28px]" src={Logo} alt="Logo" />
       </div>
       <ul className="flex w-full h-full text-slate-500 justify-center items-center gap-10  md:flex-col ">
-        <NavLink to="/" activeClassName>
+        <NavLink to="/fun" activeClassName>
           <Popcorn size={24} />
         </NavLink>
         <NavLink to="/animes" activeClassName>
