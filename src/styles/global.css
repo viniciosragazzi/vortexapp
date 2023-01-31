@@ -9,7 +9,7 @@ body {
 .active {
   color: #5078ff;
 }
-.contentMobile {
+.containerMobile  {
   z-index: 100 !important;
 }
 .slider {
