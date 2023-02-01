@@ -5,9 +5,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { ContainerMobile } from "./ContainerMobile";
 
 import { DadosContext } from "../context/ContextApp";
+import { useNavigate } from "react-router-dom";
 
 export function Header(props) {
   const { menuShow, setMenuShow } = useContext(DadosContext);
+  const navigate = useNavigate();
 
   const handleClickLogo = () => {
     return navigate("/");
