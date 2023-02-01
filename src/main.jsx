@@ -25,7 +25,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/fun/:type",
-        element: <FunChildrenPage />,
+        element: <Fun />,
       },
     ],
   },
