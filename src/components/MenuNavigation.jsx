@@ -2,7 +2,7 @@ import { ChatsCircle, GameController, Popcorn, Skull } from "phosphor-react";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import GamepadOutlinedIcon from "@mui/icons-material/GamepadOutlined";
-
+ 
 import Logo from "../assets/vortex.png";
 import { Avatar } from "@mui/material";
 export function MenuNavigation(props) {

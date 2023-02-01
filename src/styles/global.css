@@ -62,6 +62,7 @@ body {
   text-align: center;
   font-size: 18px;
   background: #030609;
+  border-radius: 10px;
   color: white;
   /* Center slide text vertically */
   display: flex;
