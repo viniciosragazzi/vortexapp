@@ -1,9 +1,8 @@
-
 import React from "react";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Header } from "../components/Header";
 import { MenuNavigation } from "../components/MenuNavigation";
-import { Home } from "../pages/Home";
+import { Fun } from "../pages/Fun";
 const AppRoutes = () => {
   return (
     <BrowserRouter>
