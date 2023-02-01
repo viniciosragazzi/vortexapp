@@ -7,7 +7,7 @@ import Logo from "../assets/vortex.png";
 import { Avatar } from "@mui/material";
 export function MenuNavigation(props) {
   return (
-    <nav className="w-screen h-12 fixed bottom-0 bg-dark flex justify-between items-center md:max-w-[80px] md:h-full md:flex-col py-4">
+    <nav className="w-screen h-12 fixed bottom-0 bg-dark flex justify-between items-center z-50 md:max-w-[80px] md:h-full md:flex-col py-4">
       <div className="logo w-full max-w-[48px] h-full max-h-[48px]  justify-center items-center hidden md:flex">
         <img className="w-full max-w-[28px]" src={Logo} alt="Logo" />
       </div>

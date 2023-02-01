@@ -17,7 +17,7 @@ export function Home() {
     <div className="w-100% md:w-[calc(100%)] h-screen md:p-8 py-6 px-4">
       <div className="header mb-12">
         <nav className="flex justify-between w-full items-center">
-          <ul className="text-white flex gap-6">
+          <ul className="text-white flex gap-4 text-xs items-center md:gap-6 md:text-base">
             <NavLink to={`/fun`} activeClassName={"active"}>
               {" "}
               <Popcorn size={24} />
