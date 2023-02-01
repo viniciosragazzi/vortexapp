@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -9,10 +8,9 @@ body {
 .active {
   color: #5078ff;
 }
-.containerMobile  {
+
+.containerMobile {
   z-index: 100 !important;
-}
-.slider {
 }
 
 .swiper {
@@ -24,6 +22,7 @@ body {
   width: 100%;
   height: 100%;
 }
+
 .swiper-slide .content {
   background-size: cover;
   background-position: center;
@@ -37,8 +36,48 @@ body {
   display: flex;
 }
 
+.listSlide {
+  position: relative;
+}
+.listSlide .swiper-button-prev {
+  left: auto;
+  right: 30px !important;
+}
+.listSlide .swiper-button-prev,
+.listSlide .swiper-button-next {
+  top: 10%;
+  position: absolute;
+  z-index: 40;
+}
+.listSlide .swiper-button-prev::after,
+.listSlide .swiper-button-next::after {
+  font-size: 16px;
+}
+.listSlide .swiper {
+  width: 100%;
+  height: 100%;
+  position: static;
+}
+.listSlide .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #030609;
+  color: white;
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.listSlide .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 @media (max-width: 1250px) {
   .swiper-slide .content .img {
     display: none;
   }
-}
+}/*# sourceMappingURL=global.css.map */
