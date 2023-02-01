@@ -9,10 +9,13 @@ import { DadosContext } from "../context/ContextApp";
 export function Header(props) {
   const { menuShow, setMenuShow } = useContext(DadosContext);
 
+  const handleClickLogo = () => {
+    return navigate("/");
+  };
   return (
     <nav className="flex md:hidden w-full h-full max-h-12 justify-between p-6 text-white ">
       <ContainerMobile />
-      <div className="logo">
+      <div className="logo"  onClick={handleClickLogo}>
         <img className="w-full max-w-[28px]" src={Logo} alt="" />
       </div>
         
