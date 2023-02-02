@@ -25,7 +25,11 @@ export function SliderTop({ itens }) {
   }, []);
   return (
     <div className="slider h-52 md:h-96 -z-10 mt-6 overflow-hidden">
-      <div className={`absolute overflow-hidden w-[85%] h-60 md:h-96 flex justify-center items-center z-50 text-4xl ${!load ? 'opacity-0' : 'opacity-100'}`}>
+      <div
+        className={`absolute overflow-hidden w-[85%] h-60 md:h-96 flex justify-center items-center z-50 text-4xl ${
+          !load ? "opacity-0" : "opacity-100"
+        }`}
+      >
         <CircularProgress />
       </div>
       <Swiper
@@ -39,7 +43,7 @@ export function SliderTop({ itens }) {
           disableOnInteraction: false,
         }}
         modules={[Pagination, Autoplay, EffectFade]}
-        className={`mySwiper ${load ? 'opacity-0' : 'opacity-100'}`}
+        className={`mySwiper ${load ? "opacity-0" : "opacity-100"}`}
       >
         {itens
           .filter((item, index) => index < 6)
@@ -70,7 +74,7 @@ export function SliderTop({ itens }) {
                     <h1 className=" font-bold text-xl md:text-4xl">
                       {item.title}
                     </h1>
-                    <p className="text-primary flex gap-2 text-xs md:text-sm mt-2 font-semibold  items-center">
+                    <p className="text-primary flex gap-2 text-xs md:text-sm mt-1 font-semibold  items-center">
                       <span className="idade">+12</span>•
                       <span className="ano">2023</span>•
                       <span className="type">Ação</span>•
@@ -121,7 +125,7 @@ export function SliderTop({ itens }) {
                       {item.overview}
                     </p>
 
-                    <div className="flex gap-4 mt-6">
+                    <div className="flex gap-4 mt-2">
                       <button
                         onClick={() => getVideosById(item.id, "movie")}
                         className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary hover:scale-95 text-dark-2 hover:opacity-95  transition-all rounded-md"
