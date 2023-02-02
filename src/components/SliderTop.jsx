@@ -41,7 +41,7 @@ export function SliderTop(props) {
             }}
           >
             <div className="filter w-full h-full absolute top-0 left-0 bg-dark opacity-70 z-0"></div>
-            <div className="text flex gap-8  items-center w-full  text-white p-4 z-50">
+            <div className="text flex gap-8  items-center w-full  text-white p-2 z-50">
               <div className="posterArea z-50   justify-center hidden md:flex ">
                 <img
                   className="border-2 border-red- max-w-[180px] rounded-md"
@@ -134,7 +134,7 @@ export function SliderTop(props) {
             }}
           >
             <div className="filter w-full h-full absolute top-0 left-0 bg-dark opacity-70 z-0"></div>
-            <div className="text flex gap-8  items-center w-full  text-white p-4 z-50">
+            <div className="text flex gap-8  items-center w-full  text-white p-2 z-50">
               <div className="posterArea z-50   justify-center hidden md:flex ">
                 <img
                   className="border-2 border-red- max-w-[180px] rounded-md"

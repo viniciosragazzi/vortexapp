@@ -116,10 +116,8 @@ export function List({ type, acao, animacao }) {
               />
               <div className="text flex   items-center w-full  text-white p-2 z-50">
                 <div className="txt  flex flex-col text-start ">
-                  <h1 className=" font-bold text-xl md:text-4xl">
-                    {item.title}
-                  </h1>
-                  <p className="text-white-blue flex gap-2 text-xs md:text-sm mt-2 font-semibold  items-center">
+                  <h1 className=" font-bold text-xl ">{item.title}</h1>
+                  <p className="text-white-blue flex gap-2 text-xs  mt-2 font-semibold  items-center">
                     <span className="idade">{}</span>•
                     <span className="ano">2023</span>•
                     <span className="type">Ação</span>•
@@ -166,15 +164,15 @@ export function List({ type, acao, animacao }) {
                     </div>
                   </p>
 
-                  <p className="sinopse text-sm md:text-base flex max-h-10 overflow-hidden  ">
-                     {item.overview}
+                  <p className="sinopse text-sm md:text-base flex max-h-11 overflow-hidden  ">
+                    {item.overview}
                   </p>
 
                   <div className="flex gap-4 mt-2">
-                    <button className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary hover:scale-95 text-dark-2 hover:opacity-95  transition-all rounded-md">
+                    <button className="trailer w-full  h-7 flex items-center justify-center text-xs font-semibold bg-primary hover:scale-95 text-dark-2 hover:opacity-95  transition-all rounded-md">
                       Assistir Trailer
                     </button>
-                    <button className="more w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md hover:scale-95">
+                    <button className="more w-full  h-7 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md hover:scale-95">
                       Saber Mais
                     </button>
                   </div>
