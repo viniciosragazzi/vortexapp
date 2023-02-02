@@ -24,7 +24,7 @@ export function SliderTop({ itens }) {
     }, 1000);
   }, []);
   return (
-    <div className="slider h-60 md:h-96 -z-10 mt-6 overflow-hidden">
+    <div className="slider h-52 md:h-96 -z-10 mt-6 overflow-hidden">
       <div className={`absolute overflow-hidden w-[85%] h-60 md:h-96 flex justify-center items-center z-50 text-4xl ${!load ? 'opacity-0' : 'opacity-100'}`}>
         <CircularProgress />
       </div>
