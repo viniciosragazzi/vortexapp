@@ -26,7 +26,6 @@ body {
 }
 .swiper-slide .content {
   background-size: cover;
-  background-position: center;
   display: flex;
   align-items: center;
   /* box-shadow: inset 0px 2px 16px 10px #0c1117; */
@@ -79,7 +78,7 @@ body {
     -webkit-align-items: center;
     align-items: center;
     transition: transform 0.4s ease-in-out;
-    
+
     &:hover {
       cursor: pointer;
       box-shadow: rgba(0, 0, 0, 0.726) 0px 7px 29px 0px;
