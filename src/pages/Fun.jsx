@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import "../styles/global.css";
 import FunHeader from "../components/FunHeader";
@@ -12,12 +12,15 @@ import appFetch from "../axios/axiosConfig";
 import { CircularProgress } from "@mui/material";
 
 export function Fun() {
+  const navigate = useNavigate();
   const { type } = useParams();
 
-  const { getIdOfGenresAndReturnDatas } = useContext(DadosContext);
+  const { getIdOfGenresAndReturnDatas, nowPlayingMovie } =
+    useContext(DadosContext);
 
   const [acao, setAcao] = useState([]);
   const [movieAnimacao, setMovieAnimacao] = useState([]);
+  const [moviePlayingNow, setMoviePlayingNow] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -28,12 +31,17 @@ export function Fun() {
         1
       );
       setAcao(tvAction.results);
+
       const movieAnimacaoData = await getIdOfGenresAndReturnDatas(
         "Animação",
         "movie",
         1
       );
       setMovieAnimacao(movieAnimacaoData.results);
+
+      const moviePlayingNowData = await nowPlayingMovie("movie", 1);
+      setMoviePlayingNow(moviePlayingNowData);
+      console.log(moviePlayingNowData);
     }
     fetchData();
     setLoading(false);
@@ -46,6 +54,7 @@ export function Fun() {
         `movie/popular?${apiKey}&language=pt-BR&page=1`
       );
       const data = response.data;
+      console.log(data);
     } catch (e) {
       console.log(e);
     }
@@ -61,14 +70,14 @@ export function Fun() {
       <div className="pb-20">
         {loading ? (
           <div className="w-screen h-screen flex justify-center items-center pt-10 text-4xl text-white">
-            <CircularProgress  />
+            <CircularProgress />
           </div>
         ) : type ? (
           <FunChildrenPage />
         ) : (
           <>
             {" "}
-            <SliderTop data={""} />
+            <SliderTop itens={moviePlayingNow} />
             <List type={type} acao={acao} animacao={movieAnimacao} />
           </>
         )}
