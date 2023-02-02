@@ -46,7 +46,7 @@ export function SliderTop({ itens }) {
           .map((item) => (
             <SwiperSlide key={item.id}>
               <div
-                className="content  w-full h-full flex justify-between bg-left-top md:bg-center"
+                className="content  w-full h-full flex justify-between bg-center"
                 style={{
                   backgroundImage:
                     "url(" +
