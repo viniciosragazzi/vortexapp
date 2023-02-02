@@ -17,7 +17,7 @@ const ContextProvider = ({ children }) => {
         `genre/${type}/list?${apiKey}&language=${language}`
       );
       const data = await response.data;
-      console.log(data);
+      // console.log(data);
       setGenres(data.genres);
       return data.genres;
     } catch (e) {
@@ -32,10 +32,10 @@ const ContextProvider = ({ children }) => {
     if (id) {
       try {
         const response = await appFetch.get(
-          `discover/${type}?${apiKey}&language=${language}&with_genres=${id}&page=${page}`
+          `discover/${type}?${apiKey}&language=${language}&with_genres=${id}&page=${page}&include_video=true`
         );
         const data = await response.data;
-        console.log(data, id);
+        console.log(data, id)
         return data;
       } catch (error) {
         console.log(error);

@@ -9,6 +9,7 @@ import { List } from "../components/List";
 import { DadosContext } from "../context/ContextApp";
 
 import appFetch from "../axios/axiosConfig";
+import { CircularProgress } from "@mui/material";
 
 export function Fun() {
   const { type } = useParams();
@@ -17,6 +18,7 @@ export function Fun() {
 
   const [acao, setAcao] = useState([]);
   const [movieAnimacao, setMovieAnimacao] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -31,9 +33,10 @@ export function Fun() {
         "movie",
         1
       );
-      setMovieAnimacao(movieAnimacaoData.results)
+      setMovieAnimacao(movieAnimacaoData.results);
     }
     fetchData();
+    setLoading(false);
   }, []);
 
   const apiKey = "api_key=48389dae1608121c67850fc083cb62ce";
@@ -56,7 +59,11 @@ export function Fun() {
     <div className="w-100% md:w-[calc(100%)]  md:p-8 py-6 px-4">
       <FunHeader />
       <div className="pb-20">
-        {type ? (
+        {loading ? (
+          <div className="w-screen h-screen flex justify-center items-center pt-10 text-4xl text-white">
+            <CircularProgress  />
+          </div>
+        ) : type ? (
           <FunChildrenPage />
         ) : (
           <>
