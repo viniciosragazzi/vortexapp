@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import FunHeader from "../components/FunHeader";
+import appFetch from "../axios/axiosConfig";
+
+import { List } from "../components/List";
+import { SliderTop } from "../components/SliderTop";
 export default function FunChildrenPage(props) {
-  const { type } = useParams();
+
   return (
     <div className="w-full">
-      <p className="text-white text-2xl">{type.toLocaleUpperCase()}</p>
+      <SliderTop data={""} />
+      <List type={location.pathname} />
     </div>
   );
 }

@@ -14,7 +14,7 @@ const AppRoutes = () => {
           <Route path={`/fun/${"movies"}`} element={<Home />} />
           <Route path={`/fun/${"series"}`} element={<Home />} />
           <Route path={`/fun/${"top"}`} element={<Home />} />
-          <Route path={`/fun/${"premieres"}`} element={<Home />} />
+          <Route path={`/fun/${"lasted"}`} element={<Home />} />
           <Route path="*" element={<Navigate to="/fun" />} />
         </Routes>
       </div>

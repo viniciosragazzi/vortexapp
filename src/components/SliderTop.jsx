@@ -112,10 +112,10 @@ export function SliderTop(props) {
                 </p>
 
                 <div className="flex gap-4 mt-6">
-                  <button className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary rounded-md">
+                  <button className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary hover:scale-95 text-dark-2 hover:opacity-95  transition-all rounded-md">
                     Assistir Trailer
                   </button>
-                  <button className="more w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md">
+                  <button className="more w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md hover:scale-95">
                     Saber Mais
                   </button>
                 </div>
@@ -204,10 +204,10 @@ export function SliderTop(props) {
                 </p>
 
                 <div className="flex gap-4 mt-6">
-                  <button className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary rounded-md">
+                  <button className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary text-dark-2 hover:opacity-95  hover:scale-95 transition-all rounded-md">
                     Assistir Trailer
                   </button>
-                  <button className="more w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md">
+                  <button className="more w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md hover:scale-95">
                     Saber Mais
                   </button>
                 </div>
