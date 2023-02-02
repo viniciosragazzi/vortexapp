@@ -9,6 +9,8 @@ const ContextProvider = ({ children }) => {
   const [language, setLanguage] = useState("pt-BR");
   const [genres, setGenres] = useState([]);
   const [currentVideo, setCurrentVideo] = useState("");
+  const [loading, setLoading] = useState(true);
+
   let url = window.location.href;
   const { type } = useParams();
   const apiKey = "api_key=48389dae1608121c67850fc083cb62ce";
@@ -86,7 +88,8 @@ const ContextProvider = ({ children }) => {
         getIdOfGenresAndReturnDatas,
         getVideosById,
         currentVideo,
-        nowPlayingMovie
+        nowPlayingMovie,
+        loading, setLoading
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import React,{useContext} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -14,12 +14,20 @@ import { DadosContext } from "../context/ContextApp";
 
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { CircularProgress } from "@mui/material";
 export function SliderTop({ itens }) {
-  const { getVideosById } = useContext(DadosContext);
-
-  const percentage = 50;
+  const { getVideosById, loading, setLoading } = useContext(DadosContext);
+  const [load, setLoad] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setLoad(false);
+    }, 1000);
+  }, []);
   return (
-    <div className="slider h-60 md:h-96 -z-10 mt-6">
+    <div className="slider h-60 md:h-96 -z-10 mt-6 overflow-hidden">
+      <div className={`absolute overflow-hidden w-[85%] h-60 md:h-96 flex justify-center items-center z-50 text-4xl ${!load ? 'opacity-0' : 'opacity-100'}`}>
+        <CircularProgress />
+      </div>
       <Swiper
         direction={"vertical"}
         effect={"fade"}
@@ -31,7 +39,7 @@ export function SliderTop({ itens }) {
           disableOnInteraction: false,
         }}
         modules={[Pagination, Autoplay, EffectFade]}
-        className="mySwiper"
+        className={`mySwiper ${load ? 'opacity-0' : 'opacity-100'}`}
       >
         {itens
           .filter((item, index) => index < 6)
@@ -114,7 +122,10 @@ export function SliderTop({ itens }) {
                     </p>
 
                     <div className="flex gap-4 mt-6">
-                      <button  onClick={() => getVideosById(item.id, "movie")} className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary hover:scale-95 text-dark-2 hover:opacity-95  transition-all rounded-md">
+                      <button
+                        onClick={() => getVideosById(item.id, "movie")}
+                        className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary hover:scale-95 text-dark-2 hover:opacity-95  transition-all rounded-md"
+                      >
                         Assistir Trailer
                       </button>
                       <button className="more w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md hover:scale-95">

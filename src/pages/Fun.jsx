@@ -12,16 +12,14 @@ import appFetch from "../axios/axiosConfig";
 import { CircularProgress } from "@mui/material";
 
 export function Fun() {
-  const navigate = useNavigate();
   const { type } = useParams();
 
-  const { getIdOfGenresAndReturnDatas, nowPlayingMovie } =
+  const { getIdOfGenresAndReturnDatas, nowPlayingMovie, loading, setLoading } =
     useContext(DadosContext);
 
   const [acao, setAcao] = useState([]);
   const [movieAnimacao, setMovieAnimacao] = useState([]);
   const [moviePlayingNow, setMoviePlayingNow] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
@@ -77,7 +75,7 @@ export function Fun() {
         ) : (
           <>
             {" "}
-            <SliderTop itens={moviePlayingNow} />
+            <SliderTop itens={moviePlayingNow} loading={loading} />
             <List type={type} acao={acao} animacao={movieAnimacao} />
           </>
         )}
