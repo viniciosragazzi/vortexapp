@@ -68,20 +68,41 @@ body {
   justify-content: center;
   align-items: center;
   transition: transform 0.4s ease-in-out;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.listSlide .swiper-slide .buttonArea {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+}
+.listSlide .swiper-slide.classMouseEnter p.sinopse {
+  display: flex;
+  -webkit-animation: showP 0.5s ease forwards;
+          animation: showP 0.5s ease forwards;
+}
+.listSlide .swiper-slide.classMouseEnter p.sinopse ~ .buttonArea {
+  margin-top: 16px;
+  -webkit-animation: showP 0.5s ease forwards;
+          animation: showP 0.5s ease forwards;
+}
+.listSlide .swiper-slide.classMouseLeave p.sinopse {
+  -webkit-animation: showF 0.5s ease forwards;
+          animation: showF 0.5s ease forwards;
+}
+.listSlide .swiper-slide.classMouseLeave p.sinopse ~ .buttonArea {
+  -webkit-animation: showF 0.5s ease forwards;
+          animation: showF 0.5s ease forwards;
 }
 .listSlide .swiper-slide:hover {
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.726) 0px 7px 29px 0px;
 }
-.listSlide .swiper-slide:hover p.sinopse {
-  display: flex;
-  -webkit-animation: showP 0.5s ease forwards;
-          animation: showP 0.5s ease forwards;
-}
 .listSlide .swiper-slide p.sinopse {
   overflow: hidden;
+  height: 0;
+  opacity: 0;
   text-overflow: ellipsis;
-  display: none;
   padding: 1rem 0;
 }
 .listSlide .swiper-slide img {
@@ -103,10 +124,14 @@ body {
     opacity: 0;
   }
   50% {
-    display: flex;
+    opacity: 0;
+    display: flex !important;
+    height: 58px;
   }
   100% {
     opacity: 1;
+    height: 58px;
+    display: flex !important;
   }
 }
 @keyframes showP {
@@ -115,9 +140,29 @@ body {
     opacity: 0;
   }
   50% {
-    display: flex;
+    opacity: 0;
+    display: flex !important;
+    height: 58px;
   }
   100% {
     opacity: 1;
+    height: 58px;
+    display: flex !important;
+  }
+}
+@-webkit-keyframes showF {
+  0% {
+    height: 58px;
+  }
+  100% {
+    height: 0;
+  }
+}
+@keyframes showF {
+  0% {
+    height: 58px;
+  }
+  100% {
+    height: 0;
   }
 }/*# sourceMappingURL=global.css.map */

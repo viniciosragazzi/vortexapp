@@ -14,13 +14,18 @@ import { CircularProgress } from "@mui/material";
 export function Fun() {
   const { type } = useParams();
 
-  const { getIdOfGenresAndReturnDatas, nowPlayingMovie, loading, setLoading } =
-    useContext(DadosContext);
+  const {
+    getIdOfGenresAndReturnDatas,
+    nowPlayingMovie,
+    loading,
+    setLoading,
+    getPopular,
+  } = useContext(DadosContext);
 
   const [acao, setAcao] = useState([]);
   const [movieAnimacao, setMovieAnimacao] = useState([]);
   const [moviePlayingNow, setMoviePlayingNow] = useState([]);
-
+  const [popular, setPopular] = useState([]);
   useEffect(() => {
     async function fetchData() {
       const tvAction = await getIdOfGenresAndReturnDatas(
@@ -39,28 +44,14 @@ export function Fun() {
 
       const moviePlayingNowData = await nowPlayingMovie("movie", 1);
       setMoviePlayingNow(moviePlayingNowData);
-      console.log(moviePlayingNowData);
+
+      const getPopularData = await getPopular("movie", 1);
+      setPopular(getPopularData);
+
     }
     fetchData();
     setLoading(false);
   }, []);
-
-  const apiKey = "api_key=48389dae1608121c67850fc083cb62ce";
-  const getDatas = async () => {
-    try {
-      const response = await appFetch.get(
-        `movie/popular?${apiKey}&language=pt-BR&page=1`
-      );
-      const data = response.data;
-      console.log(data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  useEffect(() => {
-    getDatas();
-  }, [type]);
 
   return (
     <div className="w-100% md:w-[calc(100%)]  md:p-8 py-6 px-4">
@@ -76,7 +67,12 @@ export function Fun() {
           <>
             {" "}
             <SliderTop itens={moviePlayingNow} loading={loading} />
-            <List type={type} acao={acao} animacao={movieAnimacao} />
+            <List
+              type={type}
+              acao={acao}
+              animacao={movieAnimacao}
+              popular={popular}
+            />
           </>
         )}
       </div>

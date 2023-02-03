@@ -73,8 +73,20 @@ const ContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  const getPopular = async (type, page) => {
+    try {
+      const response = await appFetch.get(
+        `${type}/popular?${apiKey}&language=${language}&page=${page}`
+      );
+      const data = response.data;
+       return data.results
+    } catch (e) {
+      console.log(e);
+    }
+  };
   useEffect(() => {
-    getIdOfGenresAndReturnDatas("Action & Adventure", "tv", 1);
+    getPopular("tv", 1);
   }, [url]);
 
   return (
@@ -89,7 +101,9 @@ const ContextProvider = ({ children }) => {
         getVideosById,
         currentVideo,
         nowPlayingMovie,
-        loading, setLoading
+        loading,
+        setLoading,
+        getPopular
       }}
     >
       {children}

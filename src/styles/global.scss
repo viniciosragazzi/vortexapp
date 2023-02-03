@@ -78,19 +78,41 @@ body {
     -webkit-align-items: center;
     align-items: center;
     transition: transform 0.4s ease-in-out;
-
-    &:hover {
-      cursor: pointer;
-      box-shadow: rgba(0, 0, 0, 0.726) 0px 7px 29px 0px;
+    cursor: pointer;
+    transition: all 0.5s;
+    .buttonArea {
+      overflow: hidden;
+      height: 0;
+      opacity: 0;
+    }
+    &.classMouseEnter {
       p.sinopse {
         display: flex;
         animation: showP 0.5s ease forwards;
+
+        ~ .buttonArea {
+          margin-top: 16px;
+          animation: showP 0.5s ease forwards;
+        }
       }
+    }
+    &.classMouseLeave {
+      p.sinopse {
+        animation: showF 0.5s ease forwards;
+        ~ .buttonArea {
+          animation: showF 0.5s ease forwards;
+        }
+      }
+    }
+    &:hover {
+      cursor: pointer;
+      box-shadow: rgba(0, 0, 0, 0.726) 0px 7px 29px 0px;
     }
     p.sinopse {
       overflow: hidden;
+      height: 0;
+      opacity: 0;
       text-overflow: ellipsis;
-      display: none;
       padding: 1rem 0;
     }
   }
@@ -114,9 +136,23 @@ body {
     opacity: 0;
   }
   50% {
-    display: flex;
+    opacity: 0;
+
+    display: flex !important;
+    height: 58px;
   }
   100% {
     opacity: 1;
+    height: 58px;
+    display: flex !important;
+  }
+}
+@keyframes showF {
+  0% {
+    height: 58px;
+  }
+
+  100% {
+    height: 0;
   }
 }
