@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+html {
+  font-size: 85%;
+}
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -139,17 +141,17 @@ body {
     opacity: 0;
 
     display: flex !important;
-    height: 58px;
+    height: 50px;
   }
   100% {
     opacity: 1;
-    height: 58px;
+    height: 50px;
     display: flex !important;
   }
 }
 @keyframes showF {
   0% {
-    height: 58px;
+    height: 50px;
   }
 
   100% {

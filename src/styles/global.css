@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html {
+  font-size: 85%;
+}
+
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -126,11 +130,11 @@ body {
   50% {
     opacity: 0;
     display: flex !important;
-    height: 58px;
+    height: 50px;
   }
   100% {
     opacity: 1;
-    height: 58px;
+    height: 50px;
     display: flex !important;
   }
 }
@@ -142,17 +146,17 @@ body {
   50% {
     opacity: 0;
     display: flex !important;
-    height: 58px;
+    height: 50px;
   }
   100% {
     opacity: 1;
-    height: 58px;
+    height: 50px;
     display: flex !important;
   }
 }
 @-webkit-keyframes showF {
   0% {
-    height: 58px;
+    height: 50px;
   }
   100% {
     height: 0;
@@ -160,7 +164,7 @@ body {
 }
 @keyframes showF {
   0% {
-    height: 58px;
+    height: 50px;
   }
   100% {
     height: 0;

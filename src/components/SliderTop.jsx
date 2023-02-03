@@ -67,7 +67,7 @@ export function SliderTop({ itens }) {
                       alt=""
                     />
                   </div>
-                  <div className="txt  max-w-xl">
+                  <div className="txt  max-w-3xl">
                     <h3 className="font-semibold text-sm md:text-xl  text-white-blue">
                       Último Lançamento
                     </h3>
@@ -125,7 +125,7 @@ export function SliderTop({ itens }) {
                       {item.overview}
                     </p>
 
-                    <div className="flex gap-4 mt-2">
+                    <div className="flex gap-4 mt-2 md:mt-6">
                       <button
                         onClick={() => getVideosById(item.id, "movie")}
                         className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary hover:scale-95 text-dark-2 hover:opacity-95  transition-all rounded-md"

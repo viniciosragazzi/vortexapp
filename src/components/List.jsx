@@ -19,7 +19,7 @@ export function List({ type, acao, animacao, popular }) {
   const onMouseEnterFunc = (id) => {
     timeOutRef.current = setTimeout(() => {
       setHoverIndex(id);
-    }, 1000);
+    }, 350);
   };
 
   const onMouseLeaveFunc = () => {
@@ -44,7 +44,7 @@ export function List({ type, acao, animacao, popular }) {
               slidesPerView: 3,
               spaceBetween: 40,
             },
-               1444: {
+            1444: {
               slidesPerView: 4,
               spaceBetween: 40,
             },
@@ -52,7 +52,6 @@ export function List({ type, acao, animacao, popular }) {
               slidesPerView: 5,
               spaceBetween: 40,
             },
-         
           }}
           navigation={true}
           modules={[Navigation]}
@@ -76,12 +75,12 @@ export function List({ type, acao, animacao, popular }) {
                 src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
                 alt=""
               />
-              <div className="text flex  mt-3  items-center w-full  text-white p-2 z-50">
+              <div className="text flex pt-10   mt-3  items-center w-full  text-white p-2 z-50">
                 <div className="txt  flex flex-col text-start ">
-                  <h1 className=" font-bold text-base md:text-xl  w-full  ">
+                  <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
                     {item.title}
                   </h1>
-                  <p className="text-white-blue flex gap-2 text-xs  mt-1 font-semibold  items-center">
+                  <p className="text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
                     <span className="idade">{}</span>•
                     <span className="ano">2023</span>•
                     <span className="type">Ação</span>•
@@ -135,11 +134,11 @@ export function List({ type, acao, animacao, popular }) {
                   <div className="flex gap-4  buttonArea">
                     <button
                       onClick={() => getVideosById(item.id, "movie")}
-                      className="trailer w-full  h-7 flex items-center justify-center text-xs font-semibold hover:scale-95 text-white hover:opacity-95  transition-all rounded-md"
+                      className="trailer w-full  h-7 flex items-center justify-center text-sm font-semibold hover:scale-95 text-white hover:opacity-95  transition-all rounded-md"
                     >
                       Assistir Trailer
                     </button>
-                    <button className="more w-full  h-7 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md hover:scale-95">
+                    <button className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95">
                       Saber Mais
                     </button>
                   </div>
@@ -167,7 +166,7 @@ export function List({ type, acao, animacao, popular }) {
               slidesPerView: 3,
               spaceBetween: 40,
             },
-               1444: {
+            1444: {
               slidesPerView: 4,
               spaceBetween: 40,
             },
@@ -198,12 +197,12 @@ export function List({ type, acao, animacao, popular }) {
                 src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
                 alt=""
               />
-              <div className="text flex   items-center w-full  text-white p-2 z-50">
+              <div className="text flex pt-10   items-center w-full  text-white p-2 z-50">
                 <div className="txt  flex flex-col text-start ">
-                  <h1 className=" font-bold text-base md:text-xl  w-full  ">
+                  <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
                     {item.name}
                   </h1>
-                  <p className="text-white-blue flex gap-2 text-xs  mt-1 font-semibold  items-center">
+                  <p className="text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
                     <span className="idade">{}</span>•
                     <span className="ano">2023</span>•
                     <span className="type">Ação</span>•
@@ -257,11 +256,11 @@ export function List({ type, acao, animacao, popular }) {
                   <div className="flex gap-4  buttonArea">
                     <button
                       onClick={() => getVideosById(item.id, "tv")}
-                      className="trailer w-full  h-7 flex items-center justify-center text-xs font-semibold hover:scale-95 text-white hover:opacity-95  transition-all rounded-md"
+                      className="trailer w-full  h-7 flex items-center justify-center text-sm font-semibold hover:scale-95 text-white hover:opacity-95  transition-all rounded-md"
                     >
                       Assistir Trailer
                     </button>
-                    <button className="more w-full  h-7 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md hover:scale-95">
+                    <button className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95">
                       Saber Mais
                     </button>
                   </div>
@@ -290,7 +289,7 @@ export function List({ type, acao, animacao, popular }) {
               slidesPerView: 3,
               spaceBetween: 40,
             },
-               1444: {
+            1444: {
               slidesPerView: 4,
               spaceBetween: 40,
             },
@@ -321,12 +320,12 @@ export function List({ type, acao, animacao, popular }) {
                 src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
                 alt=""
               />
-              <div className="text flex   items-center w-full  text-white p-2 z-50">
+              <div className="text flex pt-10   items-center w-full  text-white p-2 z-50">
                 <div className="txt  flex flex-col text-start ">
-                  <h1 className=" font-bold text-base md:text-xl  w-full  ">
+                  <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
                     {item.title}
                   </h1>
-                  <p className="text-white-blue flex gap-2 text-xs  mt-1 font-semibold  items-center">
+                  <p className="text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
                     <span className="idade">{}</span>•
                     <span className="ano">2023</span>•
                     <span className="type">Ação</span>•
@@ -380,11 +379,11 @@ export function List({ type, acao, animacao, popular }) {
                   <div className="flex gap-4  buttonArea">
                     <button
                       onClick={() => getVideosById(item.id, "movie")}
-                      className="trailer w-full  h-7 flex items-center justify-center text-xs font-semibold hover:scale-95 text-white hover:opacity-95  transition-all rounded-md"
+                      className="trailer w-full  h-7 flex items-center justify-center text-sm font-semibold hover:scale-95 text-white hover:opacity-95  transition-all rounded-md"
                     >
                       Assistir Trailer
                     </button>
-                    <button className="more w-full  h-7 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md hover:scale-95">
+                    <button className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95">
                       Saber Mais
                     </button>
                   </div>
