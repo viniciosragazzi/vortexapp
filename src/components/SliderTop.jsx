@@ -75,7 +75,11 @@ export function SliderTop({ itens }) {
                       Último Lançamento
                     </h3>
                     <h1 className=" font-bold text-xl md:text-4xl">
-                    {type === 'movies' ? item.title : item.name}
+                    {!type
+                      ? item.title
+                      : type === "series"
+                      ? item.name
+                      : item.title}
                     </h1>
                     <p className="text-primary flex gap-2 text-xs md:text-sm mt-1 font-semibold  items-center">
                       <span className="idade">+12</span>•

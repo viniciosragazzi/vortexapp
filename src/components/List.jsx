@@ -29,7 +29,6 @@ export function List({ acao, animacao, popular }) {
     clearInterval(timeOutRef.current);
   };
   const { type } = useParams();
-  console.log(type);
   return (
     <div className="flex flex-col gap-14">
       <div className="listSlide h-56 mt-10">
@@ -83,7 +82,11 @@ export function List({ acao, animacao, popular }) {
               <div className="text flex pt-10   mt-3  items-center w-full  text-white p-2 z-50">
                 <div className="txt  flex flex-col text-start ">
                   <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
-                  {type === 'movies' ? item.title : item.name}
+                    {!type
+                      ? item.title
+                      : type === "series"
+                      ? item.name
+                      : item.title}
                   </h1>
                   <p className=" infos text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
                     <span className="idade">{}</span>•
@@ -205,7 +208,11 @@ export function List({ acao, animacao, popular }) {
               <div className="text flex pt-10   items-center w-full  text-white p-2 z-50">
                 <div className="txt  flex flex-col text-start ">
                   <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
-                    {item.name}
+                    {!type
+                      ? item.name
+                      : type === "series"
+                      ? item.name
+                      : item.title}
                   </h1>
                   <p className="text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
                     <span className="idade">{}</span>•
@@ -328,7 +335,11 @@ export function List({ acao, animacao, popular }) {
               <div className="text flex pt-10   items-center w-full  text-white p-2 z-50">
                 <div className="txt  flex flex-col text-start ">
                   <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
-                  {type === 'movies' ? item.title : item.name}
+                    {!type
+                      ? item.title
+                      : type === "series"
+                      ? item.name
+                      : item.title}
                   </h1>
                   <p className="text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
                     <span className="idade">{}</span>•

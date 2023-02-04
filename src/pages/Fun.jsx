@@ -10,6 +10,7 @@ import { DadosContext } from "../context/ContextApp";
 
 import appFetch from "../axios/axiosConfig";
 import { CircularProgress } from "@mui/material";
+let url = window.location.href;
 
 export function Fun() {
   const { type } = useParams();
@@ -17,8 +18,7 @@ export function Fun() {
   const {
     getIdOfGenresAndReturnDatas,
     nowPlaying,
-    loading,
-    setLoading,
+
     getPopular,
   } = useContext(DadosContext);
   const [popular, setPopular] = useState([]);
@@ -26,7 +26,11 @@ export function Fun() {
   const [acao, setAcao] = useState([]);
   const [movieAnimacao, setMovieAnimacao] = useState([]);
   const [moviePlayingNow, setMoviePlayingNow] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    setLoading(true);
+
     async function fetchData() {
       const tvAction = await getIdOfGenresAndReturnDatas(
         "Action & Adventure",
@@ -47,10 +51,10 @@ export function Fun() {
 
       const getPopularData = await getPopular("movie", 1);
       setPopular(getPopularData);
+      setLoading(false);
     }
     fetchData();
-    setLoading(false);
-  }, []);
+  }, [url]);
 
   return (
     <div className="w-100% md:w-[calc(100%)]  md:p-8 py-6 px-4">
@@ -61,7 +65,7 @@ export function Fun() {
             <CircularProgress />
           </div>
         ) : type ? (
-          <FunChildrenPage />
+          <FunChildrenPage loading={loading} />
         ) : (
           <>
             {" "}
