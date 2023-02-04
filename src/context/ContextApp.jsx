@@ -21,6 +21,7 @@ const ContextProvider = ({ children }) => {
       );
       const data = await response.data;
       setGenres(data.genres);
+      console.log(data);
       return data.genres;
     } catch (e) {
       console.log(e);

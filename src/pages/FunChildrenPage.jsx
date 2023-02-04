@@ -10,17 +10,22 @@ export default function FunChildrenPage(props) {
   const typeConverted =
     type === "series" ? "tv" : type === "movies" ? "movie" : "";
 
-  const { nowPlaying, loading, setLoading } = useContext(DadosContext);
+  const { nowPlaying, loading, setLoading,getIdOfGenresAndReturnDatas ,getPopular} = useContext(DadosContext);
   const [playingNow, setPlayingNow] = useState([]);
   const [animation, setAnimation] = useState([]);
+  const [popular, setPopular] = useState([]);
+
 
   useEffect(() => {
     async function fetchData() {
       const nowPlayingData = await nowPlaying(typeConverted, 1);
       setPlayingNow(nowPlayingData);
 
-      const animationItens = await nowPlaying(typeConverted, 1);
-      setPlayingNow(nowPlayingData);
+      const animationItens = await getIdOfGenresAndReturnDatas('Animação', typeConverted, 1);
+      setAnimation(animationItens.results);
+      
+      const getPopularData = await getPopular(typeConverted, 1);
+      setPopular(getPopularData);
     }
     fetchData();
     setLoading(false)
@@ -34,7 +39,8 @@ export default function FunChildrenPage(props) {
           </div>
         ) :<SliderTop itens={playingNow} loading={loading} />}
       
-      <List type={location.pathname} />
+              
+      <List type={location.pathname} animacao={animation} popular={popular}  />
     </div>
   );
 }

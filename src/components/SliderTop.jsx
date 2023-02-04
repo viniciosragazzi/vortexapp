@@ -15,6 +15,7 @@ import { DadosContext } from "../context/ContextApp";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { CircularProgress } from "@mui/material";
+import { useParams } from "react-router-dom";
 export function SliderTop({ itens }) {
   const { getVideosById, loading, setLoading } = useContext(DadosContext);
   const [load, setLoad] = useState(true);
@@ -23,6 +24,8 @@ export function SliderTop({ itens }) {
       setLoad(false);
     }, 1000);
   }, []);
+  const { type } = useParams();
+
   return (
     <div className="slider h-52 md:h-96 -z-10 mt-6 overflow-hidden">
       <div
@@ -72,7 +75,7 @@ export function SliderTop({ itens }) {
                       Último Lançamento
                     </h3>
                     <h1 className=" font-bold text-xl md:text-4xl">
-                      {item.title}
+                    {type === 'movies' ? item.title : item.name}
                     </h1>
                     <p className="text-primary flex gap-2 text-xs md:text-sm mt-1 font-semibold  items-center">
                       <span className="idade">+12</span>•

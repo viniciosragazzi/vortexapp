@@ -10,8 +10,9 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 //context
 import { DadosContext } from "../context/ContextApp";
+import { useParams } from "react-router-dom";
 
-export function List({ type, acao, animacao, popular }) {
+export function List({ acao, animacao, popular }) {
   const { getVideosById } = useContext(DadosContext);
 
   const timeOutRef = useRef();
@@ -27,10 +28,14 @@ export function List({ type, acao, animacao, popular }) {
 
     clearInterval(timeOutRef.current);
   };
+  const { type } = useParams();
+  console.log(type);
   return (
     <div className="flex flex-col gap-14">
       <div className="listSlide h-56 mt-10">
-        <h1 className="text-white text-xl font-semibold mb-4">Lançamentos</h1>
+        <h1 className="text-white text-xl font-semibold mb-4">
+          Tops da Semana
+        </h1>
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
@@ -78,7 +83,7 @@ export function List({ type, acao, animacao, popular }) {
               <div className="text flex pt-10   mt-3  items-center w-full  text-white p-2 z-50">
                 <div className="txt  flex flex-col text-start ">
                   <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
-                    {item.title}
+                  {type === 'movies' ? item.title : item.name}
                   </h1>
                   <p className=" infos text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
                     <span className="idade">{}</span>•
@@ -323,7 +328,7 @@ export function List({ type, acao, animacao, popular }) {
               <div className="text flex pt-10   items-center w-full  text-white p-2 z-50">
                 <div className="txt  flex flex-col text-start ">
                   <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
-                    {item.title}
+                  {type === 'movies' ? item.title : item.name}
                   </h1>
                   <p className="text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
                     <span className="idade">{}</span>•
