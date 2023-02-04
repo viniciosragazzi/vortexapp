@@ -16,16 +16,16 @@ export function Fun() {
 
   const {
     getIdOfGenresAndReturnDatas,
-    nowPlayingMovie,
+    nowPlaying,
     loading,
     setLoading,
     getPopular,
   } = useContext(DadosContext);
+  const [popular, setPopular] = useState([]);
 
   const [acao, setAcao] = useState([]);
   const [movieAnimacao, setMovieAnimacao] = useState([]);
   const [moviePlayingNow, setMoviePlayingNow] = useState([]);
-  const [popular, setPopular] = useState([]);
   useEffect(() => {
     async function fetchData() {
       const tvAction = await getIdOfGenresAndReturnDatas(
@@ -42,12 +42,11 @@ export function Fun() {
       );
       setMovieAnimacao(movieAnimacaoData.results);
 
-      const moviePlayingNowData = await nowPlayingMovie("movie", 1);
+      const moviePlayingNowData = await nowPlaying("movie", 1);
       setMoviePlayingNow(moviePlayingNowData);
 
       const getPopularData = await getPopular("movie", 1);
       setPopular(getPopularData);
-
     }
     fetchData();
     setLoading(false);

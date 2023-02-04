@@ -97,6 +97,7 @@ body {
           animation: showP 0.5s ease forwards;
         }
       }
+   
     }
     &.classMouseLeave {
       p.sinopse {
@@ -110,6 +111,7 @@ body {
       cursor: pointer;
       box-shadow: rgba(0, 0, 0, 0.726) 0px 7px 29px 0px;
     }
+
     p.sinopse {
       overflow: hidden;
       height: 0;

@@ -80,7 +80,7 @@ export function List({ type, acao, animacao, popular }) {
                   <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
                     {item.title}
                   </h1>
-                  <p className="text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
+                  <p className=" infos text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
                     <span className="idade">{}</span>•
                     <span className="ano">2023</span>•
                     <span className="type">Ação</span>•

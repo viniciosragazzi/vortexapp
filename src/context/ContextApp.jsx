@@ -20,7 +20,6 @@ const ContextProvider = ({ children }) => {
         `genre/${type}/list?${apiKey}&language=${language}`
       );
       const data = await response.data;
-      console.log(data);
       setGenres(data.genres);
       return data.genres;
     } catch (e) {
@@ -62,10 +61,12 @@ const ContextProvider = ({ children }) => {
     }
   };
 
-  const nowPlayingMovie = async (type, page) => {
+  const nowPlaying = async (type, page) => {
     try {
       const response = await appFetch.get(
-        `${type}/now_playing?${apiKey}&language=${language}&page=${page}`
+        `${type}/${
+          type === "movie" ? "now_playing" : "on_the_air"
+        }?${apiKey}&language=${language}&page=${page}`
       );
       const data = response.data;
       return data.results;
@@ -80,13 +81,14 @@ const ContextProvider = ({ children }) => {
         `${type}/popular?${apiKey}&language=${language}&page=${page}`
       );
       const data = response.data;
-       return data.results
+      return data.results;
     } catch (e) {
       console.log(e);
     }
   };
   useEffect(() => {
     getPopular("tv", 1);
+    getIdOfGenresAndReturnDatas('Animação','tv',1)
   }, [url]);
 
   return (
@@ -100,10 +102,10 @@ const ContextProvider = ({ children }) => {
         getIdOfGenresAndReturnDatas,
         getVideosById,
         currentVideo,
-        nowPlayingMovie,
+        nowPlaying,
         loading,
         setLoading,
-        getPopular
+        getPopular,
       }}
     >
       {children}
