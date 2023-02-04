@@ -8,6 +8,7 @@ import { Fun } from "./pages/Fun";
 import Home from "./pages/Home";
 import ErrorPage from "./pages/ErrorPage";
 import FunChildrenPage from "./pages/FunChildrenPage";
+import ItemPage from "./pages/ItemPage";
 
 const router = createBrowserRouter([
   {
@@ -23,10 +24,16 @@ const router = createBrowserRouter([
         path: "/fun",
         element: <Fun />,
       },
+    
       {
         path: "/fun/:type",
         element: <Fun />,
       },
+      {
+        path: "/fun/one/:id",
+        element: <ItemPage />,
+      },
+      
     ],
   },
 ]);

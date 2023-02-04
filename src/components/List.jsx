@@ -10,10 +10,11 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 //context
 import { DadosContext } from "../context/ContextApp";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 export function List({ acao, animacao, popular }) {
-  const { getVideosById } = useContext(DadosContext);
+
+  const { getVideosById, getIndividualItem } = useContext(DadosContext);
 
   const timeOutRef = useRef();
   const [hoverId, setHoverIndex] = useState(-1);
@@ -146,7 +147,12 @@ export function List({ acao, animacao, popular }) {
                     >
                       Assistir Trailer
                     </button>
-                    <button className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95">
+                    <button
+                      className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95"
+                      onClick={() => {
+                        getIndividualItem(item.id, type);
+                      }}
+                    >
                       Saber Mais
                     </button>
                   </div>
@@ -272,7 +278,12 @@ export function List({ acao, animacao, popular }) {
                     >
                       Assistir Trailer
                     </button>
-                    <button className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95">
+                    <button
+                      className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95"
+                      onClick={() => {
+                        getIndividualItem(item.id, type);
+                      }}
+                    >
                       Saber Mais
                     </button>
                   </div>
@@ -399,7 +410,12 @@ export function List({ acao, animacao, popular }) {
                     >
                       Assistir Trailer
                     </button>
-                    <button className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95">
+                    <button
+                      className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95"
+                      onClick={() => {
+                        getIndividualItem(item.id, type);
+                      }}
+                    >
                       Saber Mais
                     </button>
                   </div>

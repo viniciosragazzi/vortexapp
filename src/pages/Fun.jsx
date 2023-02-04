@@ -8,7 +8,6 @@ import { SliderTop } from "../components/SliderTop";
 import { List } from "../components/List";
 import { DadosContext } from "../context/ContextApp";
 
-import appFetch from "../axios/axiosConfig";
 import { CircularProgress } from "@mui/material";
 let url = window.location.href;
 
@@ -38,7 +37,7 @@ export function Fun() {
         1
       );
       setAcao(tvAction.results);
-
+        console.log(tvAction.results);
       const movieAnimacaoData = await getIdOfGenresAndReturnDatas(
         "Animação",
         "movie",
@@ -61,7 +60,7 @@ export function Fun() {
       <FunHeader />
       <div className="pb-20">
         {loading ? (
-          <div className="w-screen h-screen flex justify-center items-center pt-10 text-4xl text-white">
+          <div className="w-full h-screen flex justify-center items-center pt-10 text-4xl text-white">
             <CircularProgress />
           </div>
         ) : type ? (

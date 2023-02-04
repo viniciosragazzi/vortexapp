@@ -1,6 +1,6 @@
 import axios from "axios";
 import { createContext, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 export const DadosContext = createContext({});
 import appFetch from "../axios/axiosConfig";
 
@@ -87,6 +87,13 @@ const ContextProvider = ({ children }) => {
       console.log(e);
     }
   };
+
+  const navigateId = useNavigate();
+
+  const getIndividualItem = async (idItem, type) => {
+    navigateId(`/fun/one/${idItem}`)
+    console.log(idItem);
+  }
   useEffect(() => {
     getPopular("tv", 1);
     getIdOfGenresAndReturnDatas('Animação','tv',1)
@@ -107,6 +114,7 @@ const ContextProvider = ({ children }) => {
         loading,
         setLoading,
         getPopular,
+        getIndividualItem,
       }}
     >
       {children}
