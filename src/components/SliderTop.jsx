@@ -17,7 +17,8 @@ import "react-circular-progressbar/dist/styles.css";
 import { CircularProgress } from "@mui/material";
 import { useParams } from "react-router-dom";
 export function SliderTop({ itens }) {
-  const { getVideosById, loading, setLoading } = useContext(DadosContext);
+  const { getVideosById, loading, setLoading, getIndividualItem } =
+    useContext(DadosContext);
   const [load, setLoad] = useState(true);
   useEffect(() => {
     setTimeout(() => {
@@ -53,12 +54,13 @@ export function SliderTop({ itens }) {
           .map((item) => (
             <SwiperSlide key={item.id}>
               <div
-                className="content  w-full h-full flex justify-between bg-center"
+                className="content  w-full h-full flex justify-between bg-center bg-black"
                 style={{
-                  backgroundImage:
-                    "url(" +
-                    `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${item.backdrop_path}` +
-                    ")",
+                  backgroundImage: item.backdrop_path
+                    ? "url(" +
+                      `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${item.backdrop_path}` +
+                      ")"
+                    : "none",
                 }}
               >
                 <div className="filter w-full h-full absolute top-0 left-0 bg-dark opacity-70 z-0"></div>
@@ -75,21 +77,25 @@ export function SliderTop({ itens }) {
                       Último Lançamento
                     </h3>
                     <h1 className=" font-bold text-xl md:text-4xl">
-                    {!type
-                      ? item.title
-                      : type === "series"
-                      ? item.name
-                      : item.title}
+                      {!type
+                        ? item.title
+                        : type === "series"
+                        ? item.name
+                        : item.title}
                     </h1>
                     <p className="text-primary flex gap-2 text-xs md:text-sm mt-1 font-semibold  items-center">
                       <span className="idade">+12</span>•
-                      <span className="ano">2023</span>•
-                      <span className="type">Ação</span>•
+                      <span className="ano">
+                        {item.release_date
+                          ? item.release_date.split("-", 1)
+                          : item.last_air_date.split("-", 1)}
+                      </span>
+                      •<span className="type">{item.genres[0]?.name}</span>•
                       <span className="tempo">2h50min</span>•
                       <div className="w-8 h-8 flex justify-center items-center">
                         <CircularProgressbar
                           value={item.vote_average * 10}
-                          text={`${item.vote_average * 10}%`}
+                          text={`${(item.vote_average * 10).toFixed(0)}%`}
                           styles={{
                             // Customize the root svg element
                             root: {},
@@ -135,11 +141,19 @@ export function SliderTop({ itens }) {
                     <div className="flex gap-4 mt-2 md:mt-6">
                       <button
                         onClick={() => getVideosById(item.id, "movie")}
-                        className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary hover:scale-95 text-dark-2 hover:opacity-95  transition-all rounded-md"
+                        className="trailer w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-primary-dark hover:scale-95 text-white hover:opacity-95  transition-all rounded-md"
                       >
                         Assistir Trailer
                       </button>
-                      <button className="more w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md hover:scale-95">
+                      <button
+                        onClick={() => {
+                          getIndividualItem(
+                            item.id,
+                            item.name ? "tv" : "movie"
+                          );
+                        }}
+                        className="more w-full max-w-[100px] h-8 flex items-center justify-center text-xs font-semibold bg-dark-2 rounded-md hover:scale-95"
+                      >
                         Saber Mais
                       </button>
                     </div>

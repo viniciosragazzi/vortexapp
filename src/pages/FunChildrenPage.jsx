@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { List } from "../components/List";
 import { SliderTop } from "../components/SliderTop";
 import { DadosContext } from "../context/ContextApp";
-export default function FunChildrenPage({}) {
+export default function FunChildrenPage({ acaoTv }) {
   let url = window.location.href;
   const { type } = useParams();
   const typeConverted =
@@ -16,6 +16,8 @@ export default function FunChildrenPage({}) {
   const [playingNow, setPlayingNow] = useState([]);
   const [animation, setAnimation] = useState([]);
   const [popular, setPopular] = useState([]);
+  const [acaoMovie, setAcaoMovie] = useState([]);
+
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     async function fetchData() {
@@ -28,14 +30,18 @@ export default function FunChildrenPage({}) {
         typeConverted,
         1
       );
-      setAnimation(animationItens.results);
+      setAnimation(animationItens);
 
       const getPopularData = await getPopular(typeConverted, 1);
       setPopular(getPopularData);
+
+      const movieAction = await getIdOfGenresAndReturnDatas("Ação", "movie", 1);
+      setAcaoMovie(movieAction);
+
       setLoading(false);
     }
     fetchData();
-  }, [url]);
+  }, [url, type]);
 
   return (
     <div className="w-full">
@@ -47,7 +53,13 @@ export default function FunChildrenPage({}) {
         <SliderTop itens={playingNow} loading={loading} />
       )}
 
-      <List type={location.pathname} animacao={animation} popular={popular} />
+      <List
+        type={location.pathname}
+        animacao={animation}
+        popular={popular}
+        acaoTv={acaoTv}
+        acao={acaoMovie}
+      />
     </div>
   );
 }

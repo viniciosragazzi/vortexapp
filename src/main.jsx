@@ -10,6 +10,7 @@ import ErrorPage from "./pages/ErrorPage";
 import FunChildrenPage from "./pages/FunChildrenPage";
 import ItemPage from "./pages/ItemPage";
 
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -30,10 +31,9 @@ const router = createBrowserRouter([
         element: <Fun />,
       },
       {
-        path: "/fun/one/:id",
-        element: <ItemPage />,
+        path: "/fun/:type/:id",
+        element: <ItemPage/>,
       },
-      
     ],
   },
 ]);

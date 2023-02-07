@@ -7,17 +7,16 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper";
 import { CircularProgressbar } from "react-circular-progressbar";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 //context
 import { DadosContext } from "../context/ContextApp";
 import { useParams, useNavigate } from "react-router-dom";
 
-export function List({ acao, animacao, popular }) {
-
+export function List({ animacao, popular, acaoTv, acao }) {
   const { getVideosById, getIndividualItem } = useContext(DadosContext);
-
   const timeOutRef = useRef();
   const [hoverId, setHoverIndex] = useState(-1);
+  let url = window.location.href;
+
   const onMouseEnterFunc = (id) => {
     timeOutRef.current = setTimeout(() => {
       setHoverIndex(id);
@@ -30,12 +29,22 @@ export function List({ acao, animacao, popular }) {
     clearInterval(timeOutRef.current);
   };
   const { type } = useParams();
+  const typeConverted =
+    type === "series" ? "tv" : type === "movies" ? "movie" : "";
+  let acaoItem = typeConverted === "tv" || typeConverted === "" ? acaoTv : acao;
+
+  useEffect(() => {}, [url]);
   return (
     <div className="flex flex-col gap-14">
       <div className="listSlide h-56 mt-10">
-        <h1 className="text-white text-xl font-semibold mb-4">
-          Tops da Semana
-        </h1>
+        <div className="w-full flex justify-between items-center">
+          <h1 className="text-white text-xl font-semibold mb-4 ">
+            Tops da Semana
+          </h1>
+          <span className="text-white-blue mr-16 cursor-pointer hover:opacity-90 transition-opacity">
+            Ver todos
+          </span>
+        </div>
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
@@ -90,14 +99,20 @@ export function List({ acao, animacao, popular }) {
                       : item.title}
                   </h1>
                   <p className=" infos text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
-                    <span className="idade">{}</span>•
-                    <span className="ano">2023</span>•
-                    <span className="type">Ação</span>•
-                    <span className="tempo">2h50min</span>•
+                    <span className="ano">
+                      {item.release_date
+                        ? item.release_date.split("-", 1)
+                        : item.last_air_date.split("-", 1)}
+                    </span>
+                    •
+                    <span className="type flex gap-2">
+                      {item.genres[0]?.name}
+                    </span>
+                    •<span className="tempo">2h50min</span>•
                     <div className="w-8 h-8 flex justify-center items-center">
                       <CircularProgressbar
                         value={item.vote_average * 10}
-                        text={`${item.vote_average * 10}%`}
+                        text={`${(item.vote_average * 10).toFixed(0)}%`}
                         styles={{
                           // Customize the root svg element
                           root: {},
@@ -128,7 +143,7 @@ export function List({ acao, animacao, popular }) {
                             // Text color
                             fill: "#fff",
                             // Text size
-                            fontSize: "28px",
+                            fontSize: "32px",
                           },
                           // Customize background - only used when the `background` prop is true
                         }}
@@ -142,7 +157,9 @@ export function List({ acao, animacao, popular }) {
 
                   <div className="flex gap-4  buttonArea">
                     <button
-                      onClick={() => getVideosById(item.id, "movie")}
+                      onClick={() =>
+                        getVideosById(item.id, type ? typeConverted : "movie")
+                      }
                       className="trailer w-full  h-7 flex items-center justify-center text-sm font-semibold hover:scale-95 text-white hover:opacity-95  transition-all rounded-md"
                     >
                       Assistir Trailer
@@ -150,7 +167,7 @@ export function List({ acao, animacao, popular }) {
                     <button
                       className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95"
                       onClick={() => {
-                        getIndividualItem(item.id, type);
+                        getIndividualItem(item.id, item.name ? "tv" : "movie");
                       }}
                     >
                       Saber Mais
@@ -163,10 +180,18 @@ export function List({ acao, animacao, popular }) {
         </Swiper>
       </div>
       <div className="listSlide h-56 mt-10">
-        <h1 className="text-white text-xl font-semibold mb-4">
-          {!type ? "Series de" : ""} Ação e Aventura
-        </h1>
-
+        <div className="w-full flex justify-between items-center">
+          <h1 className="text-white text-xl font-semibold mb-4">
+            {!type
+              ? "Ação e Aventura"
+              : type === "movies"
+              ? "Filmes de Ação"
+              : "Ação e Aventura"}
+          </h1>
+          <span className="text-white-blue mr-16 cursor-pointer hover:opacity-90 transition-opacity">
+            Ver todos
+          </span>
+        </div>
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
@@ -193,7 +218,7 @@ export function List({ acao, animacao, popular }) {
           modules={[Navigation]}
           className="mySwiper"
         >
-          {acao?.map((item, index) => (
+          {acaoItem?.map((item, index) => (
             <SwiperSlide
               key={item.id}
               className={`overflow-hidden ${
@@ -221,14 +246,20 @@ export function List({ acao, animacao, popular }) {
                       : item.title}
                   </h1>
                   <p className="text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
-                    <span className="idade">{}</span>•
-                    <span className="ano">2023</span>•
-                    <span className="type">Ação</span>•
-                    <span className="tempo">2h50min</span>•
+                    <span className="ano">
+                      {item.release_date
+                        ? item.release_date.split("-", 1)
+                        : item.last_air_date.split("-", 1)}
+                    </span>
+                    •
+                    <span className="type flex gap-2">
+                      <span>{item.genres[1].name}</span>
+                    </span>
+                    •<span className="tempo">2h50min</span>•
                     <div className="w-8 h-8 flex justify-center items-center">
                       <CircularProgressbar
                         value={item.vote_average * 10}
-                        text={`${item.vote_average * 10}%`}
+                        text={`${(item.vote_average * 10).toFixed(0)}%`}
                         styles={{
                           // Customize the root svg element
                           root: {},
@@ -259,7 +290,7 @@ export function List({ acao, animacao, popular }) {
                             // Text color
                             fill: "#fff",
                             // Text size
-                            fontSize: "28px",
+                            fontSize: "32px",
                           },
                           // Customize background - only used when the `background` prop is true
                         }}
@@ -273,7 +304,9 @@ export function List({ acao, animacao, popular }) {
                   </p>
                   <div className="flex gap-4  buttonArea">
                     <button
-                      onClick={() => getVideosById(item.id, "tv")}
+                      onClick={() =>
+                        getVideosById(item.id, type ? typeConverted : "tv")
+                      }
                       className="trailer w-full  h-7 flex items-center justify-center text-sm font-semibold hover:scale-95 text-white hover:opacity-95  transition-all rounded-md"
                     >
                       Assistir Trailer
@@ -281,7 +314,7 @@ export function List({ acao, animacao, popular }) {
                     <button
                       className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95"
                       onClick={() => {
-                        getIndividualItem(item.id, type);
+                        getIndividualItem(item.id, item.name ? "tv" : "movie");
                       }}
                     >
                       Saber Mais
@@ -294,11 +327,15 @@ export function List({ acao, animacao, popular }) {
         </Swiper>
       </div>
       <div className="listSlide h-56 mt-10">
-        <h1 className="text-white text-xl font-semibold mb-4">
-          {" "}
-          {!type ? "Filmes de" : ""} Animação
-        </h1>
-
+        <div className="w-full flex justify-between items-center">
+          <h1 className="text-white text-xl font-semibold mb-4">
+            {" "}
+            {!type ? "Filmes de" : ""} Animação
+          </h1>
+          <span className="text-white-blue mr-16 cursor-pointer hover:opacity-90 transition-opacity">
+            Ver todos
+          </span>
+        </div>
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
@@ -353,14 +390,20 @@ export function List({ acao, animacao, popular }) {
                       : item.title}
                   </h1>
                   <p className="text-white-blue flex gap-2 text-sm  mt-1 font-semibold  items-center">
-                    <span className="idade">{}</span>•
-                    <span className="ano">2023</span>•
-                    <span className="type">Ação</span>•
-                    <span className="tempo">2h50min</span>•
+                    <span className="ano">
+                      {item.release_date
+                        ? item.release_date.split("-", 1)
+                        : item.last_air_date.split("-", 1)}
+                    </span>
+                    •
+                    <span className="type flex gap-2">
+                      <span>{item.genres[1].name}</span>
+                    </span>
+                    •<span className="tempo">2h50min</span>•
                     <div className="w-8 h-8 flex justify-center items-center">
                       <CircularProgressbar
                         value={item.vote_average * 10}
-                        text={`${item.vote_average * 10}%`}
+                        text={`${(item.vote_average * 10).toFixed(0)}%`}
                         styles={{
                           // Customize the root svg element
                           root: {},
@@ -391,7 +434,7 @@ export function List({ acao, animacao, popular }) {
                             // Text color
                             fill: "#fff",
                             // Text size
-                            fontSize: "28px",
+                            fontSize: "32px",
                           },
                           // Customize background - only used when the `background` prop is true
                         }}
@@ -405,7 +448,9 @@ export function List({ acao, animacao, popular }) {
 
                   <div className="flex gap-4  buttonArea">
                     <button
-                      onClick={() => getVideosById(item.id, "movie")}
+                      onClick={() =>
+                        getVideosById(item.id, type ? typeConverted : "movie")
+                      }
                       className="trailer w-full  h-7 flex items-center justify-center text-sm font-semibold hover:scale-95 text-white hover:opacity-95  transition-all rounded-md"
                     >
                       Assistir Trailer
@@ -413,7 +458,7 @@ export function List({ acao, animacao, popular }) {
                     <button
                       className="more w-full  h-7 flex items-center justify-center text-sm font-semibold bg-dark-2 rounded-md hover:scale-95"
                       onClick={() => {
-                        getIndividualItem(item.id, type);
+                        getIndividualItem(item.id, item.name ? "tv" : "movie");
                       }}
                     >
                       Saber Mais

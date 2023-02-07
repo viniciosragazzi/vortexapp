@@ -36,14 +36,15 @@ export function Fun() {
         "tv",
         1
       );
-      setAcao(tvAction.results);
-        console.log(tvAction.results);
+      console.log(tvAction);
+      setAcao(tvAction);
+
       const movieAnimacaoData = await getIdOfGenresAndReturnDatas(
         "Animação",
         "movie",
         1
       );
-      setMovieAnimacao(movieAnimacaoData.results);
+      setMovieAnimacao(movieAnimacaoData);
 
       const moviePlayingNowData = await nowPlaying("movie", 1);
       setMoviePlayingNow(moviePlayingNowData);
@@ -64,14 +65,14 @@ export function Fun() {
             <CircularProgress />
           </div>
         ) : type ? (
-          <FunChildrenPage loading={loading} />
+          <FunChildrenPage loading={loading} acaoTv={acao} />
         ) : (
           <>
             {" "}
             <SliderTop itens={moviePlayingNow} loading={loading} />
             <List
+              acaoTv={acao}
               type={type}
-              acao={acao}
               animacao={movieAnimacao}
               popular={popular}
             />

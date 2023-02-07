@@ -75,10 +75,16 @@ body {
   cursor: pointer;
   transition: all 0.5s;
 }
+.listSlide .swiper-slide img {
+  transition: 0.4s ease transform;
+}
 .listSlide .swiper-slide .buttonArea {
   overflow: hidden;
   height: 0;
   opacity: 0;
+}
+.listSlide .swiper-slide.classMouseEnter img {
+  transform: scale(1.2) !important;
 }
 .listSlide .swiper-slide.classMouseEnter p.sinopse {
   display: flex;
@@ -115,6 +121,10 @@ body {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.itemPage .header {
+  background-size: cover;
 }
 
 @media (max-width: 1250px) {
