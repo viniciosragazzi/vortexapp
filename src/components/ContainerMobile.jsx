@@ -7,7 +7,7 @@ export function ContainerMobile(props) {
 
   return (
     <div
-      className={`containerMobile w-screen h-screen fixed left-0 top-0  transition-transform bg-dark-2 p-6 ${
+      className={`containerMobile w-screen h-screen fixed left-0 top-0  z-[900]  transition-transform bg-dark-2 p-6 ${
         menuShow ? "translate-x-0" : "translate-x-[-200vw]"
       }`}
     >

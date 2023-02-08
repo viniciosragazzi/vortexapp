@@ -12,7 +12,7 @@ export function MenuNavigation(props) {
     return navigate("/");
   };
   return (
-    <nav className="w-screen h-12 fixed bottom-0 bg-dark flex justify-between items-center z-50 md:max-w-[80px] md:h-full md:flex-col py-4">
+    <nav className="w-screen h-12 fixed bottom-0 bg-dark flex justify-between items-center z-[100] md:max-w-[80px] md:h-full md:flex-col py-4">
       <div
         onClick={handleClickLogo}
         className="logo w-full max-w-[48px] h-full max-h-[48px]  justify-center items-center hidden md:flex cursor-pointer hover:scale-95 transition-transform hover:opacity-95"
