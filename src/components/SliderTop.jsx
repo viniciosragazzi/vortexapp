@@ -30,12 +30,10 @@ export function SliderTop({ itens }) {
   return (
     <div className="slider h-52 md:h-96 -z-10 mt-6 overflow-hidden">
       <div
-        className={`absolute overflow-hidden w-[85%] h-60 md:h-96 flex justify-center items-center z-50 text-4xl ${
+        className={`absolute overflow-hidden w-full md:w-[91%] h-60 md:h-96 flex justify-center items-center z-50 text-4xl opacity-80 rounded-3xl animate-pulse bg-[#131921] ${
           !load ? "opacity-0 hidden" : "opacity-100"
         }`}
-      >
-        <CircularProgress />
-      </div>
+      ></div>
       <Swiper
         direction={"vertical"}
         effect={"fade"}
