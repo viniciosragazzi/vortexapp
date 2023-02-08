@@ -60,11 +60,7 @@ export function Fun() {
     <div className="w-100% md:w-[calc(100%)]  md:p-8 py-6 px-4">
       <FunHeader />
       <div className="pb-20">
-        {loading ? (
-          <div className="w-full h-screen flex justify-center items-center pt-10 text-4xl text-white">
-            <CircularProgress />
-          </div>
-        ) : type ? (
+    { type ? (
           <FunChildrenPage loading={loading} acaoTv={acao} />
         ) : (
           <>
@@ -75,6 +71,7 @@ export function Fun() {
               type={type}
               animacao={movieAnimacao}
               popular={popular}
+              loading={loading}
             />
           </>
         )}

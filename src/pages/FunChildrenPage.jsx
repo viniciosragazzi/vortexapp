@@ -19,12 +19,15 @@ export default function FunChildrenPage({ acaoTv }) {
   const [acaoMovie, setAcaoMovie] = useState([]);
 
   const [loading, setLoading] = useState(true);
+  const [loadingTop, setLoadingTop] = useState(true);
+
   useEffect(() => {
     async function fetchData() {
+      setLoadingTop(true);
       setLoading(true);
       const nowPlayingData = await nowPlaying(typeConverted, 1);
       setPlayingNow(nowPlayingData);
-
+      setLoadingTop(false);
       const animationItens = await getIdOfGenresAndReturnDatas(
         "Animação",
         typeConverted,
@@ -45,21 +48,29 @@ export default function FunChildrenPage({ acaoTv }) {
 
   return (
     <div className="w-full">
-      {loading ? (
-        <div className="w-full h-screen flex justify-center items-center pt-10 text-4xl text-white">
-          <CircularProgress />
-        </div>
-      ) : (
-        <SliderTop itens={playingNow} loading={loading} />
-      )}
+      <>
+        {loadingTop ? (
+          <div className="w-full h-screen flex justify-center items-center pt-10 text-4xl text-white">
+            <CircularProgress />
+          </div>
+        ) : (
+          <SliderTop itens={playingNow} loading={loading} />
+        )}
 
-      <List
-        type={location.pathname}
-        animacao={animation}
-        popular={popular}
-        acaoTv={acaoTv}
-        acao={acaoMovie}
-      />
+        {loading ? (
+          <div className="w-full h-screen flex justify-center items-center pt-10 text-4xl text-white">
+            <CircularProgress />
+          </div>
+        ) : (
+          <List
+            type={location.pathname}
+            animacao={animation}
+            popular={popular}
+            acaoTv={acaoTv}
+            acao={acaoMovie}
+          />
+        )}
+      </>
     </div>
   );
 }
