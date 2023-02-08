@@ -89,7 +89,7 @@ export default function itemPage() {
                 </div>
 
                 <div className=" text-white flex items-center gap-5">
-                  <div className="w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
+                  <div className="w-12 h-12  flex justify-center items-center">
                     <CircularProgressbar
                       value={item.vote_average * 10}
                       text={`${item.vote_average.toFixed(1)}`}
@@ -129,7 +129,7 @@ export default function itemPage() {
                       }}
                     />
                   </div>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col text-sm">
                     <p>
                       {item.popularity}{" "}
                       <span className="text-zinc-400 pl-1">ratings</span>
@@ -216,20 +216,89 @@ export default function itemPage() {
                     {item.overview}
                   </div>
 
-                  <div className="details mt-5">
+                  <div className="details mt-5 flex flex-col gap-8">
                     <h1 className="text-white font-semibold text-2xl">
                       Detalhes:
                     </h1>
+                    <div className="detailsArea w-full h-screen flex flex-col overflow-hidden px-4 gap-3">
+                      <div className="detail flex w-full gap-10 items-center border-b border-gray-600 py-4">
+                        <span className="title font-semibold">Gêneros</span>
+                        <div className="generosList flex gap-2 text-sm">
+                          {item.genres.map((gen, i) => (
+                            <span
+                              key={i}
+                              className="gen min-w-[64px] px-4 text-center rounded-full block py-1 bg-gray-600"
+                            >
+                              {gen.name}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                      <div className="detail flex w-full gap-10 items-center border-b border-gray-600 py-4">
+                        <span className="title font-semibold">
+                          Pais de Orígem
+                        </span>
+                        <div className="item flex gap-2 text-sm">
+                          {item.production_countries[0].iso_3166_1} (
+                          {item.production_countries[0].name})
+                        </div>
+                      </div>
+                      <div className="detail flex w-full gap-10 items-center border-b border-gray-600 py-4">
+                        <span className="title font-semibold">Infos</span>
+                        <div className="item flex gap-2 text-sm">
+                          {type === "tv" ? (
+                            <p className="flex gap-2 text-sm md:text-base">
+                              <span className="font-semibold flex gap-1">
+                                Lançamento:
+                                <span className="font-normal">
+                                  {item.release_date
+                                    ? item.release_date.split("-", 1)
+                                    : item.last_air_date.split("-", 1)}
+                                </span>
+                              </span>
+                              •
+                              <span className="font-semibold flex gap-1">
+                                {item.number_of_seasons}
+                                <span className="font-normal">Temporadas</span>
+                              </span>
+                              •
+                              <span className="font-semibold flex gap-1">
+                                {item.number_of_episodes}
+                                <span className="font-normal">Episodios</span>
+                              </span>
+                            </p>
+                          ) : (
+                            <p className="flex gap-2">
+                              <span className="font-semibold flex gap-1">
+                                Lançamento:
+                                <span className="font-normal">
+                                  {item.release_date
+                                    ? item.release_date.split("-", 1)
+                                    : item.last_air_date.split("-", 1)}
+                                </span>
+                              </span>
+                              •
+                              <span className="font-semibold flex gap-1">
+                                Gênero:
+                                <span className="font-normal">
+                                  {item.genres[0].name}
+                                </span>
+                              </span>
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="textArea w-full flex flex-col justify-start md:max-w-xs items-start">
+              {/* <div className="textArea w-full flex flex-col justify-start md:max-w-xs items-start">
                 <header>
                   <h1 className="text-white font-bold text-2xl">
                     {item.name ? item.name : item.title}
                   </h1>
                 </header>
-              </div>
+              </div> */}
             </div>
           </div>
         </>
