@@ -50,16 +50,17 @@ export default function FunChildrenPage({ acaoTv }) {
           <CircularProgress />
         </div>
       ) : (
-        <SliderTop itens={playingNow} loading={loading} />
+        <>
+          <SliderTop itens={playingNow} loading={loading} />
+          <List
+            type={location.pathname}
+            animacao={animation}
+            popular={popular}
+            acaoTv={acaoTv}
+            acao={acaoMovie}
+          />
+        </>
       )}
-
-      <List
-        type={location.pathname}
-        animacao={animation}
-        popular={popular}
-        acaoTv={acaoTv}
-        acao={acaoMovie}
-      />
     </div>
   );
 }
