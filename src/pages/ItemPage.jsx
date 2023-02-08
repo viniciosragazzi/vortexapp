@@ -13,7 +13,7 @@ export default function itemPage() {
   let url = window.location.href;
   const { id, type } = useParams();
 
-  const { getDetail } = useContext(DadosContext);
+  const { getDetail, getVideosById } = useContext(DadosContext);
 
   useEffect(() => {
     setLoading(true);
@@ -53,11 +53,12 @@ export default function itemPage() {
               </div>
             )}
             <img
-              className="w-full h-full absolute top-0 z-50 object-cover  self-center opacity-40"
+              className="w-full h-full absolute top-0 z-50 object-cover  self-center opacity-40 imgTop"
               src={`https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${item.backdrop_path}`}
               onLoad={handleImageLoad}
               style={{ display: imageLoaded ? "block" : "none" }}
             />
+            <div className="bottom"></div>
             <div
               style={{ display: imageLoaded ? "block" : "none" }}
               className=" text flex gap-8   w-full h-full absolute top-0   text-white p-2 z-50"
@@ -77,9 +78,9 @@ export default function itemPage() {
             </div>
           </div>
           <div className="content relative w-full h-full z-50 ">
-            <div className="infos absolute w-full h-screen top-[-150px] flex flex-col md:flex-row   p-10">
+            <div className="infos absolute w-full h-screen top-[-150px] flex flex-col md:flex-row  p-5  md:p-10">
               <div className="cardArea flex flex-col gap-10 w-full md:max-w-xs items-center md:items-start">
-                <div className="card relative max-w-[200px] overflow-hidden rounded-md">
+                <div className="card relative max-w-[150px] md:mr-3 sm:max-w-[200px] overflow-hidden rounded-md ">
                   <img
                     src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}`}
                     className={"h-full w-full"}
@@ -88,7 +89,7 @@ export default function itemPage() {
                 </div>
 
                 <div className=" text-white flex items-center gap-5">
-                  <div className="w-16 h-16 flex justify-center items-center">
+                  <div className="w-12 h-12 md:w-16 md:h-16 flex justify-center items-center">
                     <CircularProgressbar
                       value={item.vote_average * 10}
                       text={`${item.vote_average.toFixed(1)}`}
@@ -147,14 +148,14 @@ export default function itemPage() {
                   </h1>
                   <p className="text-zinc-300 font-semibold">
                     Titulo original:{" "}
-                    <span>
+                    <span className="font-normal">
                       {item.original_title
                         ? item.original_title
                         : item.original_name}
                     </span>
                   </p>
                   {type === "tv" ? (
-                    <p className="flex gap-2">
+                    <p className="flex gap-2 text-sm md:text-base">
                       <span className="font-semibold flex gap-1">
                         Lançamento:
                         <span className="font-normal">

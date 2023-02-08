@@ -134,6 +134,17 @@ body {
 .itemPage {
   .header {
     background-size: cover;
+    position: relative;
+
+    .bottom {
+      position: absolute;
+      width: 100vw;
+      height: 60px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #0c1117);
+      bottom: 0;
+      left: 0;
+      z-index: 50;
+    }
   }
 }
 @media (max-width: 1250px) {

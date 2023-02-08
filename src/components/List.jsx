@@ -95,9 +95,14 @@ export function List({ animacao, popular, acaoTv, acao, loading }) {
                 >
                   <img
                     className=" w-full absolute opacity-40  "
-                    src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
+                    src={`${
+                      item.backdrop_path != null
+                        ? `https://image.tmdb.org/t/p/w500${item.backdrop_path}`
+                        : `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}`
+                    }`}
                     alt=""
                   />
+
                   <div className="text flex pt-10   mt-3  items-center w-full  text-white p-2 z-50">
                     <div className="txt  flex flex-col text-start ">
                       <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
@@ -245,9 +250,14 @@ export function List({ animacao, popular, acaoTv, acao, loading }) {
                 >
                   <img
                     className=" w-full absolute opacity-40  "
-                    src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
+                    src={`${
+                      item.backdrop_path != null
+                        ? `https://image.tmdb.org/t/p/w500${item.backdrop_path}`
+                        : `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}`
+                    }`}
                     alt=""
                   />
+
                   <div className="text flex pt-10   items-center w-full  text-white p-2 z-50">
                     <div className="txt  flex flex-col text-start ">
                       <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
@@ -398,9 +408,14 @@ export function List({ animacao, popular, acaoTv, acao, loading }) {
                 >
                   <img
                     className=" w-full absolute opacity-40  "
-                    src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
+                    src={`${
+                      item.backdrop_path != null
+                        ? `https://image.tmdb.org/t/p/w500${item.backdrop_path}`
+                        : `https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}`
+                    }`}
                     alt=""
                   />
+
                   <div className="text flex pt-10   items-center w-full  text-white p-2 z-50">
                     <div className="txt  flex flex-col text-start ">
                       <h1 className=" font-bold text-base md:text-xl  w-full max-w-xs  ">
