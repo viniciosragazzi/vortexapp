@@ -9,11 +9,12 @@ import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import ShareIcon from "@mui/icons-material/Share";
 export default function itemPage() {
   const [loading, setLoading] = useState(true);
-  const [item, setItem] = useState(true);
+  const [item, setItem] = useState();
+  const [similar, setSimilar] = useState();
   let url = window.location.href;
   const { id, type } = useParams();
 
-  const { getDetail, getVideosById } = useContext(DadosContext);
+  const { getDetail, getVideosById, getSimilar } = useContext(DadosContext);
 
   useEffect(() => {
     setLoading(true);
@@ -21,7 +22,10 @@ export default function itemPage() {
     async function fetchData() {
       const itemData = await getDetail(type, id);
       setItem(itemData);
-      console.log(itemData);
+
+      const similarData = await getSimilar(type, id);
+      setSimilar(similarData);
+
       setLoading(false);
     }
     fetchData();
@@ -78,7 +82,7 @@ export default function itemPage() {
             </div>
           </div>
           <div className="content relative w-full h-full z-50 ">
-            <div className="infos absolute w-full h-screen top-[-150px] flex flex-col md:flex-row  p-5  md:p-10">
+            <div className="infos absolute w-full h-screen top-[-150px]   p-5  md:p-10">
               <div className="cardArea flex flex-col gap-10 w-full md:max-w-xs items-center md:items-start">
                 <div className="card relative max-w-[150px] md:mr-3 sm:max-w-[200px] overflow-hidden rounded-md ">
                   <img
@@ -140,13 +144,15 @@ export default function itemPage() {
                     </p>
                   </div>
                 </div>
+
+                <div className="relacionados"></div>
               </div>
-              <div className="textArea w-full h-full flex flex-col gap-2 justify-start items-start pt-10">
+              <div className="textArea w-full  flex flex-col gap-2 justify-start items-start pt-10">
                 <header className="flex flex-col gap-1">
-                  <h1 className="text-white font-bold text-3xl">
+                  <h1 className="text-white font-bold text-2xl md:text-3xl">
                     {item.name ? item.name : item.title}
                   </h1>
-                  <p className="text-zinc-300 font-semibold">
+                  <p className="text-zinc-300 font-semibold text-sm md:text-base">
                     Titulo original:{" "}
                     <span className="font-normal">
                       {item.original_title
@@ -156,7 +162,7 @@ export default function itemPage() {
                   </p>
                   {type === "tv" ? (
                     <p className="flex gap-2 text-sm md:text-base">
-                      <span className="font-semibold flex gap-1">
+                      <span className="font-semibold flex gap-1 text-sm md:text-base">
                         Lançamento:
                         <span className="font-normal">
                           {item.release_date
@@ -165,18 +171,18 @@ export default function itemPage() {
                         </span>
                       </span>
                       •
-                      <span className="font-semibold flex gap-1">
+                      <span className="font-semibold flex gap-1 text-sm md:text-base">
                         {item.number_of_seasons}
                         <span className="font-normal">Temporadas</span>
                       </span>
                       •
-                      <span className="font-semibold flex gap-1">
+                      <span className="font-semibold flex gap-1 text-sm md:text-base">
                         {item.number_of_episodes}
                         <span className="font-normal">Episodios</span>
                       </span>
                     </p>
                   ) : (
-                    <p className="flex gap-2">
+                    <p className="flex gap-2  text-sm md:text-base">
                       <span className="font-semibold flex gap-1">
                         Lançamento:
                         <span className="font-normal">
@@ -212,7 +218,7 @@ export default function itemPage() {
                       <ShareIcon />
                     </div>
                   </div>
-                  <div className="text-overview text-zinc-400">
+                  <div className="text-overview text-zinc-400  text-sm md:text-base">
                     {item.overview}
                   </div>
 
@@ -220,14 +226,14 @@ export default function itemPage() {
                     <h1 className="text-white font-semibold text-2xl">
                       Detalhes:
                     </h1>
-                    <div className="detailsArea w-full h-screen flex flex-col overflow-hidden px-4 gap-3">
+                    <div className="detailsArea w-full  flex flex-col overflow-hidden md:px-4 gap-3">
                       <div className="detail flex w-full gap-10 items-center border-b border-gray-600 py-4">
                         <span className="title font-semibold">Gêneros</span>
-                        <div className="generosList flex gap-2 text-sm">
+                        <div className="generosList flex gap-2 text-xs md:text-sm flex-wrap">
                           {item.genres.map((gen, i) => (
                             <span
                               key={i}
-                              className="gen min-w-[64px] px-4 text-center rounded-full block py-1 bg-gray-600"
+                              className="gen  px-4 text-center rounded-full block py-1 bg-gray-600"
                             >
                               {gen.name}
                             </span>
@@ -247,7 +253,7 @@ export default function itemPage() {
                         <span className="title font-semibold">Infos</span>
                         <div className="item flex gap-2 text-sm">
                           {type === "tv" ? (
-                            <p className="flex gap-2 text-sm md:text-base">
+                            <p className="flex gap-2 text-sm md:text-base flex-wrap">
                               <span className="font-semibold flex gap-1">
                                 Lançamento:
                                 <span className="font-normal">
@@ -292,13 +298,90 @@ export default function itemPage() {
                   </div>
                 </div>
               </div>
-              {/* <div className="textArea w-full flex flex-col justify-start md:max-w-xs items-start">
+              <div className="similar w-full flex flex-col justify-start  items-start md:items-center gap-8 md:gap-6  mt-12 pb-16">
                 <header>
                   <h1 className="text-white font-bold text-2xl">
-                    {item.name ? item.name : item.title}
+                    Recomendados
                   </h1>
                 </header>
-              </div> */}
+                <div className=" itens flex flex-wrap  gap-6 md:gap-4">
+                  {similar
+                    .filter((item, index) => index < 4)
+                    .map((item, index) => (
+                      <div className="card flex gap-2">
+                        <div className="poster flex-1">
+                          <img
+                            src={`https://www.themoviedb.org/t/p/w600_and_h900_bestv2${item.poster_path}`}
+                            className={"h-full w-full max-w-[70px]"}
+                            alt=""
+                          />
+                        </div>
+                        <div className="infos-card flex flex-col gap-6 max-w-[140px]">
+                          <div className="span infoTop font-bold text-base">
+                            {item.name ? item.name : item.title}
+                          </div>
+                          <div className=" text-white flex items-center gap-5">
+                            <div className="w-12 h-12  flex justify-center items-center">
+                              <CircularProgressbar
+                                value={item.vote_average * 10}
+                                text={`${item.vote_average.toFixed(1)}`}
+                                styles={{
+                                  // Customize the root svg element
+                                  root: {},
+                                  // Customize the path, i.e. the "completed progress"
+                                  path: {
+                                    // Path color
+                                    stroke: `#5078ff`,
+                                    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                                    strokeLinecap: "butt",
+                                    // Customize transition animation
+                                    transition:
+                                      "stroke-dashoffset 0.5s ease 0s",
+                                    // Rotate the path
+                                    transform: "rotate(0.25turn)",
+                                    transformOrigin: "center center",
+                                  },
+                                  // Customize the circle behind the path, i.e. the "total progress"
+                                  trail: {
+                                    // Trail color
+                                    stroke: "#d6d6d6",
+                                    // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
+                                    strokeLinecap: "butt",
+                                    // Rotate the trail
+                                    transform: "rotate(0.25turn)",
+                                    transformOrigin: "center center",
+                                  },
+                                  // Customize the text
+                                  text: {
+                                    // Text color
+                                    fill: "#fff",
+                                    // Text size
+                                    fontSize: "32px",
+                                  },
+                                  // Customize background - only used when the `background` prop is true
+                                }}
+                              />
+                            </div>
+                            <div className="flex flex-col text-sm">
+                              <p>
+                                {item.popularity}{" "}
+                                <span className="text-zinc-400 pl-1">
+                                  ratings
+                                </span>
+                              </p>
+                              <p>
+                                {item.vote_count}{" "}
+                                <span className="text-zinc-400 pl-1">
+                                  reviews
+                                </span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
             </div>
           </div>
         </>

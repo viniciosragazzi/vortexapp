@@ -50,7 +50,7 @@ export default function FunChildrenPage({ acaoTv }) {
           <CircularProgress />
         </div>
       ) : (
-        <>
+        <div className="surgir">
           <SliderTop itens={playingNow} loading={loading} />
           <List
             type={location.pathname}
@@ -59,7 +59,7 @@ export default function FunChildrenPage({ acaoTv }) {
             acaoTv={acaoTv}
             acao={acaoMovie}
           />
-        </>
+        </div>
       )}
     </div>
   );

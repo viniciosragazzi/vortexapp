@@ -19,23 +19,12 @@ import { useParams } from "react-router-dom";
 export function SliderTop({ itens }) {
   const { getVideosById, loading, setLoading, getIndividualItem } =
     useContext(DadosContext);
-  const [load, setLoad] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setLoad(false);
-    }, 1000);
-  }, []);
+  const [load, setLoad] = useState(false);
+
   const { type } = useParams();
 
   return (
     <div className="slider h-52 md:h-96 -z-10 mt-6 overflow-hidden">
-      <div
-        className={`absolute overflow-hidden w-[85%] h-60 md:h-96 flex justify-center items-center z-50 text-4xl ${
-          !load ? "opacity-0 hidden" : "opacity-100"
-        }`}
-      >
-        <CircularProgress />
-      </div>
       <Swiper
         direction={"vertical"}
         effect={"fade"}

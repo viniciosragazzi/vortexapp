@@ -114,14 +114,30 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const getSimilar = async (type, id) =>{
+    try{
+      const response = await appFetch.get(
+        `${type}/${id}/similar?${apiKey}&language=${language}&page=1`
+      );
+      const similar = response.data;
+      console.log(similar.results)
+      
+      return similar.results;
+    }catch(e){
+      console.log(e)
+    }
+  }
   const navigateId = useNavigate();
 
   const getIndividualItem = async (idItem, type) => {
     navigateId(`/fun/${type}/${idItem}`);
 
   };
+
+
   useEffect(() => {
     console.clear()
+    // getSimilar('movie', 505642)
   }, [url]);
 
   return (
@@ -141,6 +157,7 @@ const ContextProvider = ({ children }) => {
         getPopular,
         getIndividualItem,
         getDetail,
+        getSimilar,
       }}
     >
       {children}

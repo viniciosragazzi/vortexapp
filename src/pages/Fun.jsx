@@ -21,7 +21,7 @@ export function Fun() {
     getPopular,
   } = useContext(DadosContext);
   const [popular, setPopular] = useState([]);
-
+  const [i, setI] = useState(0);
   const [acao, setAcao] = useState([]);
   const [movieAnimacao, setMovieAnimacao] = useState([]);
   const [moviePlayingNow, setMoviePlayingNow] = useState([]);
@@ -54,17 +54,20 @@ export function Fun() {
       setLoading(false);
     }
     fetchData();
-  }, [url]);
+  }, [type, url]);
 
   return (
     <div className="w-100% md:w-[calc(100%)]  md:p-8 py-6 px-4">
       <FunHeader />
       <div className="pb-20">
-    { type ? (
+        {type ? (
           <FunChildrenPage loading={loading} acaoTv={acao} />
+        ) : loading ? (
+          <div className="w-full h-screen flex justify-center items-center pt-10 text-4xl text-white">
+            <CircularProgress />
+          </div>
         ) : (
-          <>
-            {" "}
+          <div className="surgir">
             <SliderTop itens={moviePlayingNow} loading={loading} />
             <List
               acaoTv={acao}
@@ -73,7 +76,7 @@ export function Fun() {
               popular={popular}
               loading={loading}
             />
-          </>
+          </div>
         )}
       </div>
     </div>
